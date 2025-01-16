@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NYC BIDs Analysis Plots</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .plot-container {
+            position: relative;
+            width: 100%;
+            padding-top: 66.67%; /* 3:2 aspect ratio */
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .plot-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        h1, h2 {
+            color: #333;
+            margin-top: 40px;
+        }
+        .plot-section {
+            margin-bottom: 40px;
+        }
+        .plot-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>NYC Business Improvement Districts (BIDs) Analysis</h1>
+    
+    <div class="plot-section">
+        <h2>Expenses Analysis</h2>
+        <div class="plot-description">
+            Interactive scatter plot showing the relationship between total expenses and cost per linear foot across different boroughs.
+        </div>
+        <div class="plot-container">
+            <iframe class="plot-frame" src="bid_expenses_vs_linear_foot.html"></iframe>
+        </div>
+        
+        <div class="plot-description">
+            Distribution of cost per linear foot across all BIDs, grouped by borough.
+        </div>
+        <div class="plot-container">
+            <iframe class="plot-frame" src="cost_per_foot_distribution.html"></iframe>
+        </div>
+        
+        <div class="plot-description">
+            Detailed view of cost per linear foot distribution using smaller ($25) bins.
+        </div>
+        <div class="plot-container">
+            <iframe class="plot-frame" src="cost_per_foot_detailed.html"></iframe>
+        </div>
+    </div>
+
+    <div class="plot-section">
+        <h2>Expense Distributions</h2>
+        <div class="plot-description">
+            Breakdown of how each BID allocates its budget across different expense categories.
+        </div>
+        <div class="plot-container">
+            <iframe class="plot-frame" src="expense_distribution.html"></iframe>
+        </div>
+    </div>
+</body>
+</html> 
