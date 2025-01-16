@@ -52,7 +52,15 @@ Replace [plot-name] with one of:
 * total_expenses_100k
 * total_expenses_1m
 
+## Features
+
+* Color gradient showing BID founding years from 1976 to 2023
+* Hover over any BID to see detailed FY2020 operational data
+* Interactive zoom and pan controls
+* Full coverage of all 76 NYC BIDs
+* Detailed financial analysis and visualizations
+
 ## Data Sources
 
 * NYC BIDs geographical and founding year data
-* FY2020 BID Trends Report Data 
+* FY2020 BID Trends Report Data
