@@ -42,6 +42,22 @@
             font-size: 16px;
             line-height: 1.5;
         }
+        .plot-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #0366d6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .plot-link:hover {
+            text-decoration: underline;
+        }
+        .plot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -51,6 +67,7 @@
         <h2>Expenses Analysis</h2>
         <div class="plot-description">
             Interactive scatter plot showing the relationship between total expenses and cost per linear foot across different boroughs.
+            <a href="bid_expenses_vs_linear_foot.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="bid_expenses_vs_linear_foot.html"></iframe>
@@ -58,6 +75,7 @@
         
         <div class="plot-description">
             Distribution of cost per linear foot across all BIDs, grouped by borough.
+            <a href="cost_per_foot_distribution.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="cost_per_foot_distribution.html"></iframe>
@@ -65,6 +83,7 @@
         
         <div class="plot-description">
             Detailed view of cost per linear foot distribution using smaller ($25) bins.
+            <a href="cost_per_foot_detailed.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="cost_per_foot_detailed.html"></iframe>
@@ -75,6 +94,7 @@
         <h2>Expense Distributions</h2>
         <div class="plot-description">
             Breakdown of how each BID allocates its budget across different expense categories.
+            <a href="expense_distribution.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="expense_distribution.html"></iframe>
@@ -82,6 +102,7 @@
 
         <div class="plot-description">
             Comparison of expense distributions across different BID groups (all BIDs, top 5 by budget, bottom 25 by budget).
+            <a href="expense_averages.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="expense_averages.html"></iframe>
@@ -92,6 +113,7 @@
         <h2>Total Expenses Distribution</h2>
         <div class="plot-description">
             Distribution of total expenses across BIDs using $100,000 bins.
+            <a href="total_expenses_100k.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="total_expenses_100k.html"></iframe>
@@ -99,6 +121,7 @@
 
         <div class="plot-description">
             Distribution of total expenses across BIDs using $1,000,000 bins.
+            <a href="total_expenses_1m.html" class="plot-link" target="_blank">[Open in new tab]</a>
         </div>
         <div class="plot-container">
             <iframe class="plot-frame" src="total_expenses_1m.html"></iframe>
