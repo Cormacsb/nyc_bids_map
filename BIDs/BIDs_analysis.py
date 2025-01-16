@@ -50,7 +50,11 @@ bid_data['Expense_per_linear_foot'] = bid_data['Total expenses'] / bid_data['Ser
 def create_responsive_layout(fig, title, xaxis_title, yaxis_title):
     """Helper function to create responsive layouts"""
     fig.update_layout(
-        title=title,
+        title=dict(
+            text=title,
+            x=0.5,
+            xanchor='center'
+        ),
         xaxis_title=xaxis_title,
         yaxis_title=yaxis_title,
         autosize=True,
@@ -62,7 +66,8 @@ def create_responsive_layout(fig, title, xaxis_title, yaxis_title):
             xanchor="left",
             x=1.01
         ),
-        template="plotly_white"
+        template="plotly_white",
+        height=800  # Set a default height
     )
 
 def save_responsive_plot(fig, filename):
@@ -70,7 +75,19 @@ def save_responsive_plot(fig, filename):
     with open('plots/template.html', 'r') as template_file:
         template = template_file.read()
     
-    plot_html = fig.to_html(full_html=False, include_plotlyjs=False)
+    config = {
+        'responsive': True,
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['lasso2d', 'select2d']
+    }
+    
+    plot_html = fig.to_html(
+        full_html=False,
+        include_plotlyjs=False,
+        config=config
+    )
+    
     final_html = template.replace('<!-- Plot will be inserted here -->', plot_html)
     
     with open(f'plots/{filename}', 'w') as f:
