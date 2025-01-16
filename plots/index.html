@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYC BIDs Analysis Plots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .plot-link {
+            display: block;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+        .plot-link:hover {
+            background: #e5e5e5;
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 2px solid #2c5282;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NYC BIDs Analysis Interactive Plots</h1>
+    
+    <a href="bid_expenses_vs_linear_foot.html" class="plot-link">
+        <h3>BID Total Expenses vs Cost per Linear Foot</h3>
+        <p>Interactive scatter plot showing the relationship between total expenses and cost per linear foot, colored by borough</p>
+    </a>
+
+    <a href="cost_per_foot_distribution.html" class="plot-link">
+        <h3>Distribution of Cost per Linear Foot</h3>
+        <p>Histogram showing the distribution of cost per linear foot across all BIDs</p>
+    </a>
+
+    <a href="cost_per_foot_detailed.html" class="plot-link">
+        <h3>Detailed Cost per Linear Foot Distribution</h3>
+        <p>Detailed histogram with $25 bins showing cost per linear foot distribution</p>
+    </a>
+
+    <a href="expense_distribution.html" class="plot-link">
+        <h3>Distribution of Expenses Across BIDs</h3>
+        <p>Stacked bar chart showing expense breakdown for each BID</p>
+    </a>
+
+    <a href="expense_averages.html" class="plot-link">
+        <h3>Average Expense Distributions</h3>
+        <p>Comparison of average expense distributions across different BID groups</p>
+    </a>
+
+    <a href="total_expenses_100k.html" class="plot-link">
+        <h3>Total Expenses Distribution (100k bins)</h3>
+        <p>Histogram of total expenses with 100k dollar bins</p>
+    </a>
+
+    <a href="total_expenses_1m.html" class="plot-link">
+        <h3>Total Expenses Distribution (1M bins)</h3>
+        <p>Histogram of total expenses with 1M dollar bins</p>
+    </a>
+</body>
+</html> 

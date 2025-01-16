@@ -1,0 +1,35 @@
+name: Update Plots
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'BIDs/BIDs_analysis.py'
+      - 'plots/**'
+
+jobs:
+  update-plots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas plotly
+          
+      - name: Run analysis and generate plots
+        run: python BIDs/BIDs_analysis.py
+        
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add plots/
+          git commit -m "Update plots" || exit 0
+          git push 
