@@ -240,6 +240,124 @@ fig_cumulative_all.update_layout(
 
 save_responsive_plot(fig_cumulative_all, "expense_distribution.html")
 
+# Calculate averages for comparison
+avg_percentages = pd.Series({
+    f'{col} %': financial_percentages[f'{col} %'].sum() / len(financial_percentages) 
+    for col in FINANCIAL_COLUMNS
+})
+
+# Calculate dollar weighted average percentages for all BIDs
+total_expenses_by_category = bid_data[FINANCIAL_COLUMNS].sum()
+weighted_percentages = (total_expenses_by_category / total_expenses_by_category.sum()) * 100
+
+# Get top 5 and bottom 25 BIDs by total financial
+top_5_bids = bid_data.nlargest(5, 'Total_Financial')
+bottom_25_bids = bid_data.nsmallest(25, 'Total_Financial')
+
+# Calculate weighted averages for top 5
+top_5_expenses = top_5_bids[FINANCIAL_COLUMNS].sum()
+top_5_weighted = (top_5_expenses / top_5_expenses.sum()) * 100
+
+# Calculate weighted averages for bottom 25
+bottom_25_expenses = bottom_25_bids[FINANCIAL_COLUMNS].sum()
+bottom_25_weighted = (bottom_25_expenses / bottom_25_expenses.sum()) * 100
+
+# Create a stacked bar chart comparing all averages
+fig_averages = go.Figure()
+
+# Add bars for each expense category across all average types
+for i, column in enumerate(FINANCIAL_COLUMNS):
+    fig_averages.add_trace(go.Bar(
+        x=['Simple Average (All BIDs)', 'Dollar Weighted Average (All BIDs)', 
+           'Dollar Weighted Average (Top 5)', 'Dollar Weighted Average (Bottom 25)'],
+        y=[avg_percentages[f'{column} %'], weighted_percentages[i], 
+           top_5_weighted[i], bottom_25_weighted[i]],
+        name=column,
+        marker=dict(color=EXPENSE_COLORS[i]),
+        hovertemplate=f"<b>{column}</b><br>%{{y:.2f}}%<br><extra></extra>"
+    ))
+
+create_responsive_layout(
+    fig_averages,
+    "Comparison of Average Expense Distributions",
+    "Average Type",
+    "Percentage"
+)
+
+fig_averages.update_layout(
+    barmode='stack',
+    xaxis=dict(tickangle=45)
+)
+
+save_responsive_plot(fig_averages, "expense_averages.html")
+
+# Create histogram with 100k bins
+fig_hist_100k = go.Figure()
+
+# Add traces for each borough with 100k bins
+for borough in BOROUGH_COLORS:
+    borough_data = bid_data[bid_data['Borough'] == borough]
+    fig_hist_100k.add_trace(go.Histogram(
+        x=borough_data['Total_Financial'],
+        xbins=dict(
+            start=0,
+            end=5200000,
+            size=100000
+        ),
+        name=borough,
+        marker_color=BOROUGH_COLORS[borough],
+        hovertemplate=f"Borough: {borough}<br>Range: $%{{x:,.0f}}<br>Count: %{{y}}<extra></extra>"
+    ))
+
+create_responsive_layout(
+    fig_hist_100k,
+    "Distribution of BID Total Expenses by Borough (100k bins)",
+    "Total Expenses ($)",
+    "Number of BIDs"
+)
+
+fig_hist_100k.update_layout(
+    bargap=0.1,
+    barmode='stack'
+)
+
+fig_hist_100k.update_xaxes(tickformat="$,.0f")
+save_responsive_plot(fig_hist_100k, "total_expenses_100k.html")
+
+# Create histogram with 1M bins
+max_value = bid_data['Total_Financial'].max()
+fig_hist_1m = go.Figure()
+
+# Add traces for each borough with 1M bins
+for borough in BOROUGH_COLORS:
+    borough_data = bid_data[bid_data['Borough'] == borough]
+    fig_hist_1m.add_trace(go.Histogram(
+        x=borough_data['Total_Financial'],
+        xbins=dict(
+            start=0,
+            end=max_value,
+            size=1000000
+        ),
+        name=borough,
+        marker_color=BOROUGH_COLORS[borough],
+        hovertemplate=f"Borough: {borough}<br>Range: $%{{x:,.0f}}<br>Count: %{{y}}<extra></extra>"
+    ))
+
+create_responsive_layout(
+    fig_hist_1m,
+    "Distribution of BID Total Expenses by Borough (1M bins)",
+    "Total Expenses ($)",
+    "Number of BIDs"
+)
+
+fig_hist_1m.update_layout(
+    bargap=0.1,
+    barmode='stack'
+)
+
+fig_hist_1m.update_xaxes(tickformat="$,.0f")
+save_responsive_plot(fig_hist_1m, "total_expenses_1m.html")
+
 print("All plots have been generated with responsive design!")
 
 
